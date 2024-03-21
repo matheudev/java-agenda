@@ -1,3 +1,4 @@
+import io.github.pixee.security.ObjectInputFilters;
 import java.io.*;
 import java.util.*;
 
@@ -249,6 +250,7 @@ public class AgendaDeContatos {
             if (arquivo.exists()) {
                 FileInputStream fis = new FileInputStream(arquivo);
                 ObjectInputStream ois = new ObjectInputStream(fis);
+                ObjectInputFilters.enableObjectFilterIfUnprotected(ois);
                 Object objetoLido = ois.readObject();
                 if (objetoLido instanceof List<?>) {
                     contatos = (List<Contato>) objetoLido;
